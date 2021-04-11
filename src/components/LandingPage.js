@@ -1,36 +1,30 @@
-
 import UserOverView from './UserOverView';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import './LandingPage.css'
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: '6% 8%',
-  },
-  smRoot: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: '6% 10.5%',
-  },
-}));
+import axios from 'axios';
+import React , {useState, useEffect }from 'react';
+import './LandingPage.css';
 
-export default function LandingPage() {
-    const classes = useStyles();
-    const theme = useTheme();
-    return (
-        <div className="Home">
-            <UserOverView />
-            <UserOverView />
-            <UserOverView />
-            <UserOverView />
-            <UserOverView />
-        </div>
-        
-        
-    );
+
+const LandingPage = () => {
+  const [data, setData] = useState([]);
+
+   useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios('https://jsonplaceholder.typicode.com/users');
+      setData(res.data);
+    };
+    fetchData();
+  }, []);
+  return (
+    <div className="Home">
+      {data &&
+        data.map((item) => (
+          <UserOverView key={item.id} id={item.id} name={item.name} username={item.username} website={item.website} />
+        ))}
+    </div>
+  );
+
 };
+
+
+export default LandingPage ;
+ 
