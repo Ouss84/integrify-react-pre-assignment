@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardActions, Button} from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Bounce from 'react-activity/lib/Bounce';
@@ -35,7 +35,7 @@ const UserDetails=(props)=> {
     const { id } = useParams();
     const [userData, setUserData] = useState({});
     let history = useHistory();
-    const theme = useTheme();
+
     const classes = useStyles();
 
   useEffect(() => {
