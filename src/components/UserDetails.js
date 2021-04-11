@@ -8,16 +8,16 @@ import Bounce from 'react-activity/lib/Bounce';
 import './UserDetails.css'
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    width: '25%',
-    margin: '4% 40%',
-    padding: '2% 0',
-    lineHeight: 2,
-  },
+//   card: {
+//     width: '25%',
+//     margin: '4% 40%',
+//     padding: '2% 0',
+//     lineHeight: 2,
+//   },
 
-  content: {
-    margin: '0 12%',
-  },
+//   content: {
+//     margin: '0 12%',
+//   },
 
   actions: {
     display: 'flex',
@@ -52,18 +52,18 @@ const UserDetails=(props)=> {
   return userData ? (
     <Card className="user-details">
       <CardContent className ="classes.content">
-        <ul >
-          <li>name: {userData.name}</li>
-          <li>username: {userData.username}</li>
-          <li>email: {userData.email}</li>
-          <li>phone: {userData.phone}</li>
-          <li>website: {userData.website}</li>
+        {/* <ul className="list"> */}
+          <h3>Name: {userData.name}</h3>
+          <h3>Username: {userData.username}</h3>
+          <h3>Email: {userData.email}</h3>
+          <h3>Phone: {userData.phone}</h3>
+          <h3>Website: {userData.website}</h3>
 
-          {userData.company && <li>company: {userData.company.name}</li>}
-          <li>address: </li>
-        </ul>
+          {userData.company && <h3>company: {userData.company.name}</h3>}
+          <h3>Address: </h3>
+        {/* </ul> */}
         {userData.address && (
-          <ul className="list">
+          <ul >
             <li>street: {userData.address.street}</li>
             <li>suite: {userData.address.suite}</li>
             <li>city: {userData.address.city}</li>
