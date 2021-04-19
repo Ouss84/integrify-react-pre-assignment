@@ -1,30 +1,34 @@
-
-import {  makeStyles} from '@material-ui/core/styles';
-import { Card, Button, CardContent, CardActions, Avatar } from '@material-ui/core';
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  Button,
+  CardContent,
+  CardActions,
+  Avatar,
+} from "@material-ui/core";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
-    height: '5rem',
-    width: '5rem',
+    height: "5rem",
+    width: "5rem",
   },
   card: {
-    width: '15.68rem',
-    padding: '3%',
-    margin: '1rem',
-    height: 'auto',
+    width: "15.68rem",
+    padding: "3%",
+    margin: "1rem",
+    height: "auto",
   },
 }));
 
-const UserOverView = ({ name, username, website, id }) => {
+function UserOverView({ name, username, website, id }) {
   const classes = useStyles();
 
   return (
@@ -52,7 +56,6 @@ const UserOverView = ({ name, username, website, id }) => {
       </Card>
     </div>
   );
-};
+}
 
 export default UserOverView;
-

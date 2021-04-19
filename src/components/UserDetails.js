@@ -1,69 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, CardContent, CardActions, Button} from '@material-ui/core';
-import { makeStyles} from '@material-ui/core/styles';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import Bounce from 'react-activity/lib/Bounce';
-import './UserDetails.css'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Card, CardContent, CardActions, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import "./UserDetails.css";
 
 const useStyles = makeStyles((theme) => ({
-//   card: {
-//     width: '25%',
-//     margin: '4% 40%',
-//     padding: '2% 0',
-//     lineHeight: 2,
-//   },
-
-//   content: {
-//     margin: '0 12%',
-//   },
-
   actions: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
   },
-
 
   button: {
-    backgroundColor: 'blue',
-    color: 'white',
+    backgroundColor: "blue",
+    color: "white",
   },
 }));
-const UserDetails=(props)=> {
+function UserDetails() {
+  const { id } = useParams();
+  const [userData, setUserData] = useState({});
+  let history = useHistory();
 
-    const { id } = useParams();
-    const [userData, setUserData] = useState({});
-    let history = useHistory();
-
-    const classes = useStyles();
+  const classes = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`https://jsonplaceholder.typicode.com/users/${id}`);
+      const result = await axios(
+        `https://jsonplaceholder.typicode.com/users/${id}`
+      );
       setUserData(result.data);
     };
 
     fetchData();
   }, [id]);
 
-  
-
-  return userData ? (
+  return (
     <Card className="user-details">
-      <CardContent className ="classes.content">
-        {/* <ul className="list"> */}
-          <h3>Name: {userData.name}</h3>
-          <h3>Username: {userData.username}</h3>
-          <h3>Email: {userData.email}</h3>
-          <h3>Phone: {userData.phone}</h3>
-          <h3>Website: {userData.website}</h3>
+      <CardContent className="classes.content">
+        <h3>Name: {userData.name}</h3>
+        <h3>Username: {userData.username}</h3>
+        <h3>Email: {userData.email}</h3>
+        <h3>Phone: {userData.phone}</h3>
+        <h3>Website: {userData.website}</h3>
 
-          {userData.company && <h3>company: {userData.company.name}</h3>}
-          <h3>Address: </h3>
-        {/* </ul> */}
+        {userData.company && <h3>company: {userData.company.name}</h3>}
+        <h3>Address: </h3>
+
         {userData.address && (
-          <ul >
+          <ul>
             <li>street: {userData.address.street}</li>
             <li>suite: {userData.address.suite}</li>
             <li>city: {userData.address.city}</li>
@@ -75,7 +60,7 @@ const UserDetails=(props)=> {
         <Button
           className={classes.button}
           onClick={() => {
-            history.push('/');
+            history.push("/");
           }}
           variant="contained"
         >
@@ -83,10 +68,7 @@ const UserDetails=(props)=> {
         </Button>
       </CardActions>
     </Card>
-  ) : (
-    <Bounce />
   );
-};
+}
 
 export default UserDetails;
-
