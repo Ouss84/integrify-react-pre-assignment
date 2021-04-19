@@ -44,7 +44,7 @@ function UserOverView({ name, username, website, id }) {
           </p>
           <p>@{username}</p>
 
-          <a href={`http://${website}`}>{`http://${website}`}</a>
+          <a href={`http://${website}`}>http://{website}</a>
         </CardContent>
         <CardActions className={classes.root}>
           <Link to={`/users/${id}`}>
